@@ -1,30 +1,20 @@
 version: 0.2
 
 phases:
-  install:
-    commands:
-      - echo Installing Node.js dependencies...
-      - npm install
   pre_build:
     commands:
-      - echo Running Selenium tests...
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.<your-region>.amazonaws.com
   build:
     commands:
-      - npm test
+      - echo Building the Docker image...
+      - docker build -t seleniumjs-nodejs .
+      - docker tag seleniumjs-nodejs:latest <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/seleniumjs:latest
   post_build:
     commands:
-      - echo Archiving test results...
-      - mkdir -p test-results
-      - cp -r test-results/* test-results/ || true
+      - echo Pushing the Docker image to ECR...
+      - docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/seleniumjs:latest
 
 artifacts:
   files:
     - '**/*'
-  discard-paths: no
-  base-directory: test-results
-reports:
-  selenium-tests:
-    files:
-      - test-results/*.xml
-    file-format: JUNIT
-
