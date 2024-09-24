@@ -1,0 +1,30 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Test results and reports
+test-results/
+
+# OS-specific files
+.DS_Store
+
+# Log files
+logs/
+*.log
+
+# Environment-specific files
+.env
+
+# Mac-specific files
+**/.DS_Store
+
+# Coverage directory (if you're using coverage tools like istanbul)
+coverage/
+
+# Build directory (if applicable)
+build/
+
+# AWS CodeBuild temporary artifacts
+*.zip
+

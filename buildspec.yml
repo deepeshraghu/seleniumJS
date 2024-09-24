@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing Node.js dependencies...
+      - npm install
+  pre_build:
+    commands:
+      - echo Running Selenium tests...
+  build:
+    commands:
+      - npm test
+  post_build:
+    commands:
+      - echo Archiving test results...
+      - mkdir -p test-results
+      - cp -r test-results/* test-results/ || true
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: no
+  base-directory: test-results
+reports:
+  selenium-tests:
+    files:
+      - test-results/*.xml
+    file-format: JUNIT
+
