@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Building the Docker image...
       - docker build -t seleniumjs-nodejs .
-      - docker tag seleniumjs-nodejs:latest <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/seleniumjs:latest
+      - docker tag seleniumjs-nodejs:latest 583420665732.dkr.ecr.ap-south-1.amazonaws.com/seleniumjs:latest
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
