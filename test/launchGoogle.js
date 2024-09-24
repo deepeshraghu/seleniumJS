@@ -15,7 +15,7 @@ describe('Launch Google', function () {
     });
 
     after(async () => {
-        await driver.quit(); // Quit the browser after test
+        await driver.quit(); // Quit the browser after test1
     });
 
     it('should open Google and verify the title', async () => {
